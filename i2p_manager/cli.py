@@ -31,9 +31,9 @@ def get_managers():
     """Create and return manager instances"""
     config = ConfigManager()
     return {
-        'config': config,
-        'firefox': FirefoxManager(config),
-        'i2pd': I2PdManager(config),
+        "config": config,
+        "firefox": FirefoxManager(config),
+        "i2pd": I2PdManager(config),
     }
 
 
@@ -43,7 +43,7 @@ def get_managers():
 def main(ctx):
     """
     I2P Easy Manager - Simplified I2P network access
-    
+
     Run without arguments to launch the interactive dashboard.
     """
     if ctx.invoked_subcommand is None:
@@ -60,7 +60,7 @@ def main(ctx):
 
 
 @main.command("init")
-@click.option('--force', '-f', is_flag=True, help='Force reinitialize')
+@click.option("--force", "-f", is_flag=True, help="Force reinitialize")
 def initialize(force):
     """Initialize I2P Firefox profile and configuration"""
     try:
@@ -72,7 +72,7 @@ def initialize(force):
 
 
 @main.command("start")
-@click.option('--no-browser', is_flag=True, help="Don't launch Firefox")
+@click.option("--no-browser", is_flag=True, help="Don't launch Firefox")
 def start(no_browser):
     """Start I2Pd and launch Firefox"""
     try:
@@ -95,7 +95,7 @@ def stop():
 
 
 @main.command("status")
-@click.option('--verbose', '-v', is_flag=True, help='Show detailed info')
+@click.option("--verbose", "-v", is_flag=True, help="Show detailed info")
 def status(verbose):
     """Check I2P connection status"""
     try:
@@ -140,8 +140,8 @@ def config_edit():
 
 
 @main.command("logs")
-@click.option('--follow', '-f', is_flag=True, help='Follow log output')
-@click.option('--lines', '-n', default=50, help='Number of lines', type=int)
+@click.option("--follow", "-f", is_flag=True, help="Follow log output")
+@click.option("--lines", "-n", default=50, help="Number of lines", type=int)
 def logs(follow, lines):
     """Show I2Pd logs"""
     try:
@@ -153,8 +153,8 @@ def logs(follow, lines):
 
 
 @main.command("reset")
-@click.option('--keep-i2pd-data', is_flag=True, help='Keep I2Pd data')
-@click.confirmation_option(prompt='Reset everything?')
+@click.option("--keep-i2pd-data", is_flag=True, help="Keep I2Pd data")
+@click.confirmation_option(prompt="Reset everything?")
 def reset(keep_i2pd_data):
     """Remove I2P profile and configuration"""
     try:

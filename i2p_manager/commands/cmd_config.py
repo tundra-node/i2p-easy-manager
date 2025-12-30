@@ -12,21 +12,21 @@ console = Console()
 
 def run(managers):
     """Open configuration file in default editor"""
-    config = managers['config']
+    config = managers["config"]
     config_path = config.get_config_path()
-    
-    console.print(f"\n[blue]Opening config in default editor...[/blue]\n")
+
+    console.print("\n[blue]Opening config in default editor...[/blue]\n")
     console.print(f"[dim]Config file: {config_path}[/dim]\n")
-    
+
     # Get default editor
-    editor = os.environ.get('EDITOR') or os.environ.get('VISUAL')
-    
+    editor = os.environ.get("EDITOR") or os.environ.get("VISUAL")
+
     if not editor:
-        if sys.platform == 'win32':
-            editor = 'notepad'
+        if sys.platform == "win32":
+            editor = "notepad"
         else:
-            editor = 'nano'
-    
+            editor = "nano"
+
     try:
         subprocess.run([editor, str(config_path)])
         console.print("[green]✓ Config editor closed[/green]\n")

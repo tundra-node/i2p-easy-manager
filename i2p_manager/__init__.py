@@ -13,7 +13,7 @@ from .i2pd import I2PdManager
 
 __all__ = [
     "ConfigManager",
-    "FirefoxManager", 
+    "FirefoxManager",
     "I2PdManager",
     "__version__",
 ]
