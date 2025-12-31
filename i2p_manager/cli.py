@@ -11,7 +11,7 @@ from . import __version__
 from .config import ConfigManager
 from .firefox import FirefoxManager
 from .i2pd import I2PdManager
-from .dashboard import Dashboard
+from .dashboard import launch_dashboard
 from .commands import (
     cmd_init,
     cmd_start,
@@ -49,8 +49,7 @@ def main(ctx):
     if ctx.invoked_subcommand is None:
         try:
             managers = get_managers()
-            dashboard = Dashboard(managers)
-            dashboard.run()
+            launch_dashboard(managers)
         except KeyboardInterrupt:
             console.print("\n[yellow]Dashboard closed[/yellow]")
             sys.exit(0)
