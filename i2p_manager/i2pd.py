@@ -129,12 +129,21 @@ class I2PdManager:
 
     def _start_macos(self):
         """Start I2Pd on macOS via Homebrew"""
-        subprocess.run(
-            ["brew", "services", "start", "i2pd"],
-            check=True,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-        )
+        try:
+            # Try brew
+            subprocess.run(
+                ["brew", "services", "start", "i2pd"],
+                check=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+        except subprocess.CalledProcessError:
+            # Fallback to manual
+            subprocess.Popen(
+                ["i2pd", "--daemon"],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
 
     def _start_windows(self):
         """Start I2Pd on Windows"""
